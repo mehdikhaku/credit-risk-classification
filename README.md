@@ -40,6 +40,9 @@ Model Evaluation
 Made predictions on the testing set.
 Evaluated performance using accuracy, precision, recall, and F1-score.
 
+## Instructions
+For detailed instructions, refer to the [Instructions PDF](instructions.pdf).
+
 ## Results
 <strong>Logistic Regression Model 1:</strong>
 Metric		Class 0 (Healthy)	Class 1 (High-Risk)
@@ -57,12 +60,16 @@ Accuracy	100%					-
 
 ## Summary
 Best Performing Model: Logistic Regression
+Model 1 Observations: 
+* The model performed extremely well in predicting healthy loans (0), with nearly perfect precision and recall.
+* However, it still missed 5% of high-risk loans (1), meaning some defaults were misclassified as safe loans.
 
-The overall accuracy of model 1 is 99%, meaning the model correctly predicts loan status most of the time.
-High recall (0.95) for high-risk loans suggests the model is effective at identifying borrowers likely to default.
-If minimizing loan defaults is the top priority, recall for high-risk loans (1) is key. The model captures 95% of high-risk loans, making it a strong choice.
-If reducing false positives (incorrectly labeling healthy loans as high-risk) is a concern, then further tuning may be required to improve precision for class 1.
+Model 2 Observations: 
+* Recall for 1 (high-risk loans) improved from 95% to 100%, meaning the model correctly identified all default loans in the test set.
+* Precision for 1 stayed the same (0.87), meaning some false positives (loans incorrectly labeled as high-risk) still exist.
+* The overall accuracy increased slightly to 100%, though this may be an overfit due to oversampling. 
 
-Logistic Regression Model 2 is less likely to predict false negative results. However, based on the confusion matrices for each model, Logistic Regression Model 2 predicted slightly more false positives (low-risk when the actual was high-risk). 
-
-Recommendation: Use Logistic Regression, but consider additional strategies to further refine predictions.
+Recommendation: Use Logistic Regression, but consider additional strategies to further refine predictions. The oversampled model is preferable if the primary concern is identifying all high-risk loans (1), since it achieves 100% recall—meaning no defaults were misclassified as safe loans.
+However, the false positive rate (precision) for 1 remains the same, meaning some healthy loans are still incorrectly labeled as high-risk.
+* If misidentifying safe loans as high-risk is not a major issue, the oversampled model is the better choice.
+* If misclassifying healthy loans as high-risk could create business problems (e.g., rejecting good applicants), then the original model may be preferable.
